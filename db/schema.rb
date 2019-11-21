@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_222812) do
+ActiveRecord::Schema.define(version: 2019_11_21_225523) do
+
+  create_table "horarios", force: :cascade do |t|
+    t.string "nombre"
+    t.date "fecha"
+    t.string "hora_inicio"
+    t.string "hora_fin"
+    t.integer "created_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_horarios_on_created_by_id"
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "nombre"
     t.string "apellido"
     t.string "telefono"
