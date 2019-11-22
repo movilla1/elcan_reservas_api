@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_143720) do
+ActiveRecord::Schema.define(version: 2019_11_22_144535) do
 
   create_table "cajas", force: :cascade do |t|
     t.date "fecha"
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 2019_11_22_143720) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creador_id"], name: "index_horarios_on_creador_id"
+  end
+
+  create_table "reservas", force: :cascade do |t|
+    t.float "adelanto"
+    t.datetime "fecha_inicio"
+    t.datetime "fecha_fin"
+    t.integer "cliente_id"
+    t.integer "creador_id"
+    t.integer "cancha_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cancha_id"], name: "index_reservas_on_cancha_id"
+    t.index ["cliente_id"], name: "index_reservas_on_cliente_id"
+    t.index ["creador_id"], name: "index_reservas_on_creador_id"
   end
 
   create_table "usuarios", force: :cascade do |t|

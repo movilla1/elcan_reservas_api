@@ -5,7 +5,7 @@ module SessionHelper
     {
       'ACCEPT' => 'application/json',
       'Content-Type' => 'application/json',
-      'Authentication' => resp['authentication_token']
+      'Authorization' => resp['auth_token']
     }
   end
 
@@ -14,7 +14,7 @@ module SessionHelper
       'username' => data[:username],
       'password' => data[:password]
     }
-    post '/authentication/authenticate', params: request_params
+    post '/login', params: request_params
     assemble_request_headers(response.headers)
   end
 end

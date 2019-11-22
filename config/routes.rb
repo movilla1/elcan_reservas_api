@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :canchas
   resources :horarios
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  post 'authenticate', to: 'authentication#authenticate'
+  post 'login', to: 'authentication#authenticate'
 end
