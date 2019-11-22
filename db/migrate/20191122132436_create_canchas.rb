@@ -3,6 +3,7 @@ class CreateCanchas < ActiveRecord::Migration[5.2]
     create_table :canchas do |t|
       t.string :nombre
       t.string :descripcion
+      t.references :usuarios
       t.float :precio_hora
       t.float :costo_extra1
       t.float :costo_extra2

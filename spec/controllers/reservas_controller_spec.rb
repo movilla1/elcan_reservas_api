@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe CanchasController, type: :controller do
+RSpec.describe ReservasController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Cancha. As you add validations to Cancha, be sure to
+  # Reserva. As you add validations to Reserva, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,47 +38,46 @@ RSpec.describe CanchasController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # CanchasController. Be sure to keep this updated too.
+  # ReservasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      cancha = Cancha.create! valid_attributes
+      reserva = Reserva.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to include("Primario")
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      cancha = Cancha.create! valid_attributes
-      get :show, params: {id: cancha.to_param}, session: valid_session
+      reserva = Reserva.create! valid_attributes
+      get :show, params: {id: reserva.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Cancha" do
+      it "creates a new Reserva" do
         expect {
-          post :create, params: {cancha: valid_attributes}, session: valid_session
-        }.to change(Cancha, :count).by(1)
+          post :create, params: {reserva: valid_attributes}, session: valid_session
+        }.to change(Reserva, :count).by(1)
       end
 
-      it "renders a JSON response with the new cancha" do
+      it "renders a JSON response with the new reserva" do
 
-        post :create, params: {cancha: valid_attributes}, session: valid_session
+        post :create, params: {reserva: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(cancha_url(Cancha.last))
+        expect(response.location).to eq(reserva_url(Reserva.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new cancha" do
+      it "renders a JSON response with errors for the new reserva" do
 
-        post :create, params: {cancha: invalid_attributes}, session: valid_session
+        post :create, params: {reserva: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -91,27 +90,27 @@ RSpec.describe CanchasController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested cancha" do
-        cancha = Cancha.create! valid_attributes
-        put :update, params: {id: cancha.to_param, cancha: new_attributes}, session: valid_session
-        cancha.reload
+      it "updates the requested reserva" do
+        reserva = Reserva.create! valid_attributes
+        put :update, params: {id: reserva.to_param, reserva: new_attributes}, session: valid_session
+        reserva.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the cancha" do
-        cancha = Cancha.create! valid_attributes
+      it "renders a JSON response with the reserva" do
+        reserva = Reserva.create! valid_attributes
 
-        put :update, params: {id: cancha.to_param, cancha: valid_attributes}, session: valid_session
+        put :update, params: {id: reserva.to_param, reserva: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the cancha" do
-        cancha = Cancha.create! valid_attributes
+      it "renders a JSON response with errors for the reserva" do
+        reserva = Reserva.create! valid_attributes
 
-        put :update, params: {id: cancha.to_param, cancha: invalid_attributes}, session: valid_session
+        put :update, params: {id: reserva.to_param, reserva: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -119,11 +118,11 @@ RSpec.describe CanchasController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested cancha" do
-      cancha = Cancha.create! valid_attributes
+    it "destroys the requested reserva" do
+      reserva = Reserva.create! valid_attributes
       expect {
-        delete :destroy, params: {id: cancha.to_param}, session: valid_session
-      }.to change(Cancha, :count).by(-1)
+        delete :destroy, params: {id: reserva.to_param}, session: valid_session
+      }.to change(Reserva, :count).by(-1)
     end
   end
 

@@ -10,17 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_225523) do
+ActiveRecord::Schema.define(version: 2019_11_22_143720) do
+
+  create_table "cajas", force: :cascade do |t|
+    t.date "fecha"
+    t.float "fondo_inicial"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creador_id"], name: "index_cajas_on_creador_id"
+  end
+
+  create_table "canchas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.integer "usuarios_id"
+    t.float "precio_hora"
+    t.float "costo_extra1"
+    t.float "costo_extra2"
+    t.string "condicion_extra1"
+    t.string "condicion_extra2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuarios_id"], name: "index_canchas_on_usuarios_id"
+  end
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "nombre"
+    t.string "apellido"
+    t.string "direccion"
+    t.string "email"
+    t.string "telefono"
+    t.date "fecha_nacimiento"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creador_id"], name: "index_clientes_on_creador_id"
+  end
 
   create_table "horarios", force: :cascade do |t|
     t.string "nombre"
     t.date "fecha"
     t.string "hora_inicio"
     t.string "hora_fin"
-    t.integer "created_by_id"
+    t.integer "creador_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["created_by_id"], name: "index_horarios_on_created_by_id"
+    t.index ["creador_id"], name: "index_horarios_on_creador_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
