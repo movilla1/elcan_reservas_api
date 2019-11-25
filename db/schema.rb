@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_22_144535) do
+ActiveRecord::Schema.define(version: 2019_11_24_225806) do
+
+  create_table "articulos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.string "codigo"
+    t.float "precio_compra"
+    t.float "precio_venta"
+    t.float "margen"
+    t.float "descuento"
+    t.string "tipo_descuento"
+    t.integer "cantidad"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "imagen_file_name"
+    t.string "imagen_content_type"
+    t.bigint "imagen_file_size"
+    t.datetime "imagen_updated_at"
+    t.index ["creador_id"], name: "index_articulos_on_creador_id"
+  end
+
+  create_table "articulos_proveedores", id: false, force: :cascade do |t|
+    t.integer "articulo_id", null: false
+    t.integer "proveedore_id", null: false
+    t.integer "creador_id"
+    t.index ["articulo_id", "proveedore_id"], name: "index_articulos_proveedores_on_articulo_id_and_proveedore_id"
+    t.index ["creador_id"], name: "index_articulos_proveedores_on_creador_id"
+    t.index ["proveedore_id", "articulo_id"], name: "index_articulos_proveedores_on_proveedore_id_and_articulo_id"
+  end
 
   create_table "cajas", force: :cascade do |t|
     t.date "fecha"
@@ -59,6 +88,19 @@ ActiveRecord::Schema.define(version: 2019_11_22_144535) do
     t.index ["creador_id"], name: "index_horarios_on_creador_id"
   end
 
+  create_table "proveedores", force: :cascade do |t|
+    t.string "nombre"
+    t.string "direccion"
+    t.string "telefono"
+    t.string "contacto"
+    t.string "email"
+    t.string "sitio_web"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creador_id"], name: "index_proveedores_on_creador_id"
+  end
+
   create_table "reservas", force: :cascade do |t|
     t.float "adelanto"
     t.datetime "fecha_inicio"
@@ -86,6 +128,31 @@ ActiveRecord::Schema.define(version: 2019_11_22_144535) do
     t.string "pais"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rol", default: 0
+  end
+
+  create_table "vendibles_venta", force: :cascade do |t|
+    t.integer "venta_id"
+    t.integer "creador_id"
+    t.string "vendible_type"
+    t.integer "vendible_id"
+    t.integer "cantidad"
+    t.float "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creador_id"], name: "index_vendibles_venta_on_creador_id"
+    t.index ["vendible_type", "vendible_id"], name: "index_vendibles_venta_on_vendible_type_and_vendible_id"
+    t.index ["venta_id"], name: "index_vendibles_venta_on_venta_id"
+  end
+
+  create_table "ventas", force: :cascade do |t|
+    t.float "total"
+    t.string "nota"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
+    t.index ["creador_id"], name: "index_ventas_on_creador_id"
   end
 
 end
