@@ -3,6 +3,8 @@ class Caja < ApplicationRecord
   validates :fondo_inicial, numericality: { greater_than: 0 }
   validates :fecha, presence: true
   validate :fecha_actual_o_futuro
+  has_many :compras, dependent: :nullify
+  has_many :ventas, dependent: :nullify
 
   private
 

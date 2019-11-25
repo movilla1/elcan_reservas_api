@@ -9,6 +9,6 @@ class Venta < ApplicationRecord
     source: "vendible",
     source_type: "Articulo"
   belongs_to :creador, class_name: "Usuario"
-
+  belongs_to :caja
   enum status: %i[abierta procesando devuelta pagada]
 end
