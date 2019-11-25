@@ -9,6 +9,8 @@ class Caja < ApplicationRecord
   private
 
   def fecha_actual_o_futuro
-    errors.add("Fecha en el pasado") unless fecha >= Date.today
+    return if fecha.present? && fecha >= Time.zone.today
+
+    errors.add(:fecha, "Fecha en el pasado")
   end
 end

@@ -43,8 +43,12 @@ group :development, :test do
 
   # Use Factory bot for generating random test data
   gem "factory_bot_rails"
+  # ERD diagrams for rails
   gem "rails-erd"
 end
+
+# Code Coverage gem
+gem 'simplecov', require: false, group: :test
 
 group :development do
   gem "listen", ">= 3.0.5", "< 3.2"
@@ -52,6 +56,3 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
