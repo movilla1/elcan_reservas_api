@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_125606) do
+ActiveRecord::Schema.define(version: 2019_11_25_134658) do
 
   create_table "articulos", force: :cascade do |t|
     t.string "nombre"
@@ -30,6 +30,20 @@ ActiveRecord::Schema.define(version: 2019_11_25_125606) do
     t.bigint "imagen_file_size"
     t.datetime "imagen_updated_at"
     t.index ["creador_id"], name: "index_articulos_on_creador_id"
+  end
+
+  create_table "articulos_compra", force: :cascade do |t|
+    t.integer "articulo_id"
+    t.integer "orden_de_compra_id"
+    t.float "precio_anterior"
+    t.integer "cantidad"
+    t.integer "status"
+    t.integer "creador_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["articulo_id"], name: "index_articulos_compra_on_articulo_id"
+    t.index ["creador_id"], name: "index_articulos_compra_on_creador_id"
+    t.index ["orden_de_compra_id"], name: "index_articulos_compra_on_orden_de_compra_id"
   end
 
   create_table "articulos_proveedores", id: false, force: :cascade do |t|
@@ -88,9 +102,11 @@ ActiveRecord::Schema.define(version: 2019_11_25_125606) do
     t.integer "caja_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "orden_de_compra_id"
     t.index ["articulo_id"], name: "index_compras_on_articulo_id"
     t.index ["caja_id"], name: "index_compras_on_caja_id"
     t.index ["creador_id"], name: "index_compras_on_creador_id"
+    t.index ["orden_de_compra_id"], name: "index_compras_on_orden_de_compra_id"
     t.index ["proveedor_id"], name: "index_compras_on_proveedor_id"
   end
 
@@ -103,6 +119,15 @@ ActiveRecord::Schema.define(version: 2019_11_25_125606) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creador_id"], name: "index_horarios_on_creador_id"
+  end
+
+  create_table "ordenes_de_compra", force: :cascade do |t|
+    t.integer "creador_id"
+    t.string "nota"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creador_id"], name: "index_ordenes_de_compra_on_creador_id"
   end
 
   create_table "proveedores", force: :cascade do |t|

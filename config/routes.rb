@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :articulos_compra
+  resources :ordenes_de_compra
   resources :compras
   resources :ventas
   resources :proveedores
