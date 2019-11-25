@@ -9,5 +9,18 @@ class Articulo < ApplicationRecord
     styles: { medium: "300x300>", thumb: "100x100>" },
     default_url: "/images/placeholder.png"
   validates_attachment :imagen, presence: true
+  validates :precio_compra, presence: true, numericality: { greater_than: 0 }
+  validates :precio_venta, presence: true, numericality: { greater_than: 0 }
+  validates :margen, presence: true, numericality: { greater_than: 0 }
+  before_validation :calcular_precios
 
+  private
+
+  def calcular_precios
+    if precio_venta.present?
+      self.margen = (precio_venta / precio_compra) * 100
+    elsif margen.present?
+      self.precio_venta = precio_compra * (1 + margen/100)
+    end
+  end
 end
