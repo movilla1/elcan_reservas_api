@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :items_ventum do
+  factory :vendible_venta do
     venta { nil }
     creador { nil }
     item { "" }

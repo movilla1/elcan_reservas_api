@@ -1,2 +1,2 @@
-json.extract! ventum, :id, :total, :nota, :created_at, :updated_at
-json.url ventum_url(ventum, format: :json)
+json.extract! venta, :id, :total, :nota, :created_at, :updated_at
+json.url venta_url(venta, format: :json)

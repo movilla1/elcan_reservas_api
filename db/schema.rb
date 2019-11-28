@@ -67,15 +67,15 @@ ActiveRecord::Schema.define(version: 2019_11_25_171249) do
   create_table "canchas", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
-    t.integer "usuarios_id"
+    t.integer "creador_id"
     t.float "precio_hora"
     t.float "costo_extra1"
     t.float "costo_extra2"
-    t.string "condicion_extra1"
-    t.string "condicion_extra2"
+    t.json "condicion_extra1"
+    t.json "condicion_extra2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["usuarios_id"], name: "index_canchas_on_usuarios_id"
+    t.index ["creador_id"], name: "index_canchas_on_creador_id"
   end
 
   create_table "clientes", force: :cascade do |t|

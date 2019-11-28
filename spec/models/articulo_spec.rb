@@ -80,7 +80,7 @@ RSpec.describe Articulo, type: :model do
         cantidad: 2,
         precio_compra: 1.21,
         precio_venta: 2.42,
-        margen: nil,
+        margen: nil
       )
       expect(art).to be_valid
       expect(art.margen).to eq(200)
@@ -94,7 +94,7 @@ RSpec.describe Articulo, type: :model do
         cantidad: 2,
         precio_compra: 1.21,
         precio_venta: nil,
-        margen: 200,
+        margen: 200
       )
       expect(art).to be_valid
       expect(art.precio_venta).to eq(2.42)
