@@ -79,5 +79,11 @@ RSpec.describe Cancha, type: :model do
       precio = cancha.precio_con_condiciones(hora_inicio, hora_fin)
       expect(precio).to eq(15)
     end
+    it "obtiene precio parcialmente dentro de condiciones" do
+      hora_inicio = Time.new(2019,07,27,20,00,0)
+      hora_fin = Time.new(2019,07,27,23,00,0)
+      precio = cancha.precio_con_condiciones(hora_inicio, hora_fin)
+      expect(precio).to eq(24) # 3 horas, 2 en normal y 1 en "extra"
+    end
   end
 end
