@@ -50,7 +50,7 @@ RSpec.describe Cliente, type: :model do
         apellido: "tester",
         creador: usuario,
         email: "test@here.com",
-        telefono: "351-*3332222."
+        telefono: "351-3332222#"
       )
       expect(cliente).to be_invalid
     end

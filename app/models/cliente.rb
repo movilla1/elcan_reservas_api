@@ -3,8 +3,8 @@ class Cliente < ApplicationRecord
   has_many :ventas, dependent: :nullify
   has_many :reservas, dependent: :nullify
 
-  validates :nombre, length: { minimum: 5, maximum: 255 }, presence: true
-  validates :apellido, length: { minimum:3, maximum: 255 }, presence: true
+  validates :nombre, length: { minimum: 4, maximum: 255 }, presence: true
+  validates :apellido, length: { minimum: 3, maximum: 255 }, presence: true
   validates :creador_id, presence: true
   validates :telefono,
     format: {

@@ -15,7 +15,7 @@ RSpec.describe Articulo, type: :model do
       creador: usuario,
       nombre: "testprov",
       direccion: "av 123",
-      telefono: "3513",
+      telefono: "351-3321",
       email: "prov@test.com",
       contacto: "Raulito",
       sitio_web: "www.test.com"
