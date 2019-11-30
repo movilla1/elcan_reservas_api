@@ -46,9 +46,9 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
 
-Rails/SkipsModelValidations:
-  Exclude:
-    - 'test/**/*.rb'
+#Rails/SkipsModelValidations:
+#  Exclude:
+#    - 'test/**/*.rb'
 
 Naming/ConstantName:
   Enabled: false
@@ -61,8 +61,12 @@ Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 Layout/AlignHash:
   EnforcedColonStyle: key
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 
 Rails/EnvironmentComparison:
+  Enabled: false
+Rails/SkipsModelValidations:
   Enabled: false
 Rails/Presence:
   Enabled: false

@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_171249) do
+ActiveRecord::Schema.define(version: 2019_11_30_002634) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "articulos", force: :cascade do |t|
     t.string "nombre"
@@ -34,8 +55,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_171249) do
 
   create_table "articulos_compra", force: :cascade do |t|
     t.integer "articulo_id"
-    t.integer "orden_de_compra_id"
+    t.string "origen_compra_type"
+    t.integer "origen_compra_id"
     t.float "precio_anterior"
+    t.float "precio_actual"
     t.integer "cantidad"
     t.integer "status"
     t.integer "creador_id"
@@ -43,16 +66,16 @@ ActiveRecord::Schema.define(version: 2019_11_25_171249) do
     t.datetime "updated_at", null: false
     t.index ["articulo_id"], name: "index_articulos_compra_on_articulo_id"
     t.index ["creador_id"], name: "index_articulos_compra_on_creador_id"
-    t.index ["orden_de_compra_id"], name: "index_articulos_compra_on_orden_de_compra_id"
+    t.index ["origen_compra_type", "origen_compra_id"], name: "origen_de_compra"
   end
 
   create_table "articulos_proveedores", id: false, force: :cascade do |t|
     t.integer "articulo_id", null: false
-    t.integer "proveedore_id", null: false
+    t.integer "proveedor_id", null: false
     t.integer "creador_id"
-    t.index ["articulo_id", "proveedore_id"], name: "index_articulos_proveedores_on_articulo_id_and_proveedore_id"
+    t.index ["articulo_id", nil], name: "index_articulos_proveedores_on_articulo_id_and_proveedore_id"
     t.index ["creador_id"], name: "index_articulos_proveedores_on_creador_id"
-    t.index ["proveedore_id", "articulo_id"], name: "index_articulos_proveedores_on_proveedore_id_and_articulo_id"
+    t.index [nil, "articulo_id"], name: "index_articulos_proveedores_on_proveedore_id_and_articulo_id"
   end
 
   create_table "cajas", force: :cascade do |t|
@@ -93,17 +116,14 @@ ActiveRecord::Schema.define(version: 2019_11_25_171249) do
 
   create_table "compras", force: :cascade do |t|
     t.integer "status"
-    t.integer "cantidad"
-    t.float "precio_unitario"
     t.float "precio_total"
     t.integer "creador_id"
-    t.integer "articulo_id"
     t.integer "proveedor_id"
     t.integer "caja_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "orden_de_compra_id"
-    t.index ["articulo_id"], name: "index_compras_on_articulo_id"
+    t.float "precio_actual"
     t.index ["caja_id"], name: "index_compras_on_caja_id"
     t.index ["creador_id"], name: "index_compras_on_creador_id"
     t.index ["orden_de_compra_id"], name: "index_compras_on_orden_de_compra_id"
