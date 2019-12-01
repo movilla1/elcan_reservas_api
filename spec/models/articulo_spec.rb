@@ -53,7 +53,7 @@ RSpec.describe Articulo, type: :model do
         margen: 100
       )
       expect(art).to be_invalid
-      expect(art.errors.messages).to include(nombre: ["is too short (minimum is 3 characters)"])
+      expect(art.errors.messages).to include(nombre: ["es demasiado corto (3 caracteres mínimo)"])
     end
 
     it "no valida articulo sin codigo" do
@@ -67,7 +67,7 @@ RSpec.describe Articulo, type: :model do
         margen: 100
       )
       expect(art).to be_invalid
-      expect(art.errors.messages).to include(codigo: ["is too short (minimum is 3 characters)"])
+      expect(art.errors.messages).to include(codigo: ["es demasiado corto (3 caracteres mínimo)"])
     end
   end
 

@@ -20,7 +20,7 @@ RSpec.describe Horario, type: :model do
         hora_fin: "18:00"
       )
       expect(horario).to be_invalid
-      expect(horario.errors.messages).to include({ fecha: ["can't be blank"] })
+      expect(horario.errors.messages).to include({ fecha: ["no puede estar en blanco"] })
     end
 
     it "no valida sin hora_inicio" do
@@ -31,7 +31,7 @@ RSpec.describe Horario, type: :model do
         hora_fin: "18:00"
       )
       expect(horario).to be_invalid
-      expect(horario.errors.messages).to include({ hora_inicio: ["can't be blank"] })
+      expect(horario.errors.messages).to include({ hora_inicio: ["no puede estar en blanco"] })
     end
 
     it "no valida sin hora_fin" do
@@ -42,7 +42,7 @@ RSpec.describe Horario, type: :model do
         hora_fin: nil
       )
       expect(horario).to be_invalid
-      expect(horario.errors.messages).to include({ hora_fin: ["can't be blank"] })
+      expect(horario.errors.messages).to include({ hora_fin: ["no puede estar en blanco"] })
     end
 
     it "crea registro valido" do
