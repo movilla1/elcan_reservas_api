@@ -4,6 +4,6 @@ class OrdenDeCompra < ApplicationRecord
 
   validates :nota, length: { maximum: 200, minimum: 5 }, presence: false
 
-  enum status: %i[abierta procesando cerrada]
+  enum status: %i[abierta procesando devolucion pagado]
 
 end

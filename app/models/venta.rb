@@ -15,5 +15,12 @@ class Venta < ApplicationRecord
   validates :nota, length: { minimum: 3, maximum: 200 }, presence: false
   validates :status, presence: true
 
-  enum status: %i[abierta procesando devuelta pagada]
+  enum status: %i[abierta procesando devolucion pagado]
+
+  def cambiar_estado(nuevo_estado)
+    self.status = nuevo_estado
+    self.vendible_ventas.each do |vendible|
+      vendible.status = nuevo_estado
+    end
+  end
 end

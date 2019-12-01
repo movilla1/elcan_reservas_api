@@ -7,6 +7,6 @@ class ArticuloCompra < ApplicationRecord
   validates :precio_anterior, numericality: { greater_than: 0 }, required: false
   validates :cantidad, numericality: { greater_than: 0 }, presence: true
 
-  enum status: %i[abierto procesado cerrado]
+  enum status: %i[abierta procesando devolucion pagado]
 
 end

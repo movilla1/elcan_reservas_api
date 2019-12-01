@@ -25,6 +25,10 @@ class Reserva < ApplicationRecord
     )
   end
 
+  def calcular_total
+    # TODO: Implementar
+  end
+
   private
 
   def fechas_actual_o_futuro

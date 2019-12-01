@@ -63,7 +63,8 @@ Layout/AlignHash:
   EnforcedColonStyle: key
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
-
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: new_line
 Rails/EnvironmentComparison:
   Enabled: false
 Rails/SkipsModelValidations:

@@ -9,7 +9,7 @@ class Compra < ApplicationRecord
 
   validates :status, presence: true
 
-  enum status: %i[abierta procesando cerrada devuelta]
+  enum status: %i[abierta procesando devolucion pagado]
 
   def procesar_compra
     errores = []
