@@ -22,7 +22,9 @@ RSpec.describe VendibleVenta, type: :model do
       Venta.create!(
         caja: caja,
         creador: usuario,
-        status: :abierta
+        status: :abierta,
+        nota: "Test de venta para comprobar funcionamiento",
+        total: 0
       )
     }
     let!(:proveedor) {

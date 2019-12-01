@@ -13,7 +13,8 @@ class Reserva < ApplicationRecord
       nota: "Creado automaticamente por reserva #{id}",
       status: :abierta,
       caja: caja,
-      creador: creador
+      creador: creador,
+      total: adelanto
     )
     VendibleVenta.create!(
       cantidad: 1,
