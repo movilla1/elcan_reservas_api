@@ -18,7 +18,7 @@ module Services
     end
 
     def subtotal_vendible_de_reserva(vendible)
-      vendible.adelanto + vendible.calcular_total
+      vendible.calcular_total[1]
     end
 
     def valor_vendible_segun_tipo(vendible)

@@ -56,7 +56,7 @@ RSpec.describe ArticuloCompra, type: :model do
         precio_actual: 10.4,
         cantidad: 2,
         origen_compra: compra,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       expect(art).to be_invalid
@@ -70,7 +70,7 @@ RSpec.describe ArticuloCompra, type: :model do
         precio_actual: -10.4,
         cantidad: 2,
         origen_compra: compra,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       expect(art).to be_invalid
@@ -84,7 +84,7 @@ RSpec.describe ArticuloCompra, type: :model do
         precio_actual: 10.4,
         cantidad: nil,
         origen_compra: compra,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       expect(art).to be_invalid
@@ -98,7 +98,7 @@ RSpec.describe ArticuloCompra, type: :model do
         precio_actual: 10.4,
         cantidad: -2,
         origen_compra: compra,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       expect(art).to be_invalid
@@ -112,7 +112,7 @@ RSpec.describe ArticuloCompra, type: :model do
         precio_actual: 10.4,
         cantidad: 2,
         origen_compra: compra,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       expect(art).to be_valid

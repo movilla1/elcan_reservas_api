@@ -26,7 +26,8 @@ class Reserva < ApplicationRecord
   end
 
   def calcular_total
-    # TODO: Implementar
+    precio_reserva = cancha.precio_con_condiciones(fecha_inicio, fecha_fin)
+    [precio_reserva, precio_reserva - adelanto]
   end
 
   private

@@ -89,7 +89,7 @@ RSpec.describe Compra, type: :model do
         precio_actual: 10.4,
         cantidad: 2,
         origen_compra: cpr,
-        status: :abierto,
+        status: :abierta,
         creador: usuario
       )
       err = cpr.procesar_compra

@@ -76,7 +76,7 @@ RSpec.describe Reserva, type: :model do
     end
   end
 
-  describe "Autocrea venta" do
+  describe "Administracion" do
     it "crea venta y vendible al crear una reserva" do
       res = Reserva.new(
         creador: usuario,
@@ -91,6 +91,18 @@ RSpec.describe Reserva, type: :model do
       expect{ res.crear_venta(caja) }.to change(Venta, :count).by(1)
       expect(VendibleVenta.count).to be(1)
       expect(VendibleVenta.first.subtotal).to eq(res.adelanto)
+    end
+
+    it "Calcula valor total de la reserva" do
+      res = Reserva.new(
+        creador: usuario,
+        cliente: cliente,
+        cancha: cancha,
+        adelanto: 2.0,
+        fecha_inicio: Time.zone.today + 1.day,
+        fecha_fin: Time.zone.today + 1.day + 1.hour
+      )
+      expect(res.calcular_total).to eq([5, 3])
     end
   end
 end

@@ -37,6 +37,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
+  config.include SessionHelper, type: :controller
   config.include SessionHelper, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
