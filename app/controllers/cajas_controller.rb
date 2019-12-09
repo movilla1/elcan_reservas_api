@@ -41,13 +41,16 @@ class CajasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_caja
-      @caja = Caja.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def caja_params
-      params.require(:caja).permit(:fecha, :fondo_inicial, :creador_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_caja
+    @caja = Caja.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: {mensaje: "No se encuentra caja"}, status: :not_found
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def caja_params
+    params.require(:caja).permit(:fecha, :fondo_inicial, :creador_id)
+  end
 end

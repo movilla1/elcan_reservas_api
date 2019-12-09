@@ -42,12 +42,17 @@ class HorariosController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_horario
-      @horario = Horario.find(params[:id])
-    end
+  def set_horario
+    @horario = Horario.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: {
+      mensaje: "horario no encontrado", status: 404
+    },
+    status: :not_found
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def horario_params
-      params.require(:horario).permit(:nombre, :fecha, :hora_inicio, :hora_fin, :created_by_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def horario_params
+    params.require(:horario).permit(:nombre, :fecha, :hora_inicio, :hora_fin, :creador_id)
+  end
 end

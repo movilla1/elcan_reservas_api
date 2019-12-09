@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CanchasController < ApplicationController
-  before_action :set_cancha, only: [:show, :update, :destroy]
+  before_action :set_cancha, only: %i[show update destroy]
 
   # GET /canchas
   # GET /canchas.json
@@ -9,8 +11,7 @@ class CanchasController < ApplicationController
 
   # GET /canchas/1
   # GET /canchas/1.json
-  def show
-  end
+  def show; end
 
   # POST /canchas
   # POST /canchas.json
@@ -41,13 +42,27 @@ class CanchasController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cancha
-      @cancha = Cancha.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cancha_params
-      params.require(:cancha).permit(:nombre, :descripcion, :precio_hora, :costo_extra1, :costo_extra2, :condicion_extra1, :condicion_extra2)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cancha
+    @cancha = Cancha.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { mensaje: "Cancha no encontrada." }, status: :not_found
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cancha_params
+    params
+      .require(:cancha)
+      .permit(
+        :nombre,
+        :descripcion,
+        :precio_hora,
+        :costo_extra1,
+        :costo_extra2,
+        :condicion_extra1,
+        :condicion_extra2,
+        :creador_id
+      )
+  end
 end

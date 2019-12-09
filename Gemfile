@@ -45,6 +45,10 @@ group :development, :test do
   gem "factory_bot_rails"
   # ERD diagrams for rails
   gem "rails-erd"
+  # Fake data generator
+  gem 'faker'
+  # DB cleaner for testing
+  gem 'database_cleaner'
 end
 
 # Code Coverage gem

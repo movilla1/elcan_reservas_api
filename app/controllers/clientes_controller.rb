@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: [:show, :update, :destroy]
+  before_action :set_cliente, only: %i[show update destroy]
 
   # GET /clientes
   # GET /clientes.json
@@ -9,8 +11,7 @@ class ClientesController < ApplicationController
 
   # GET /clientes/1
   # GET /clientes/1.json
-  def show
-  end
+  def show; end
 
   # POST /clientes
   # POST /clientes.json
@@ -41,13 +42,16 @@ class ClientesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cliente
-      @cliente = Cliente.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cliente_params
-      params.require(:cliente).permit(:nombre, :apellido, :direccion, :email, :telefono, :fecha_nacimiento, :creador_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cliente
+    @cliente = Cliente.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { mensaje: "Cliente no válido" }, status: :not_found
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cliente_params
+    params.require(:cliente).permit(:nombre, :apellido, :direccion, :email, :telefono, :fecha_nacimiento, :creador_id)
+  end
 end
