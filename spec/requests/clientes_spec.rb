@@ -47,8 +47,10 @@ RSpec.describe "Clientes", type: :request do
           params: {
             cliente: {
               nombre: "Lorem ipsum 123",
-              descripcion: "Lorem ipsum sir dolor amet",
-              precio_hora: 12.31,
+              apellido: "Lorem ipsum sir dolor amet",
+              direccion: "Acasito 123",
+              telefono: "422-2211",
+              email: "tester@here.com",
               creador_id: @usr.id
             }
           },
@@ -61,9 +63,11 @@ RSpec.describe "Clientes", type: :request do
       post "/clientes",
         params: {
           cliente: {
-            nombre: "Lorem ipsum 123",
-            descripcion: "Lorem ipsum sir dolor amet",
-            precio_hora: nil,
+            nombre: nil,
+            apellido: "Lorem ipsum sir dolor amet",
+            direccion: "Acasito 123",
+            telefono: "422-2211",
+            email: "tester@here.com",
             creador_id: @usr.id
           }
         },
@@ -85,8 +89,8 @@ RSpec.describe "Clientes", type: :request do
         patch "/clientes/#{@clientes[1].id}.json",
           params: {
             cliente: {
-              precio_hora: 123.99,
-              nombre: "Testing 123"
+              nombre: "Testing 123",
+              apellido: "Teseracto"
             }
           },
           headers: @headers
@@ -98,7 +102,7 @@ RSpec.describe "Clientes", type: :request do
       patch "/clientes/#{@clientes[1].id}.json",
         params: {
           cliente: {
-            precio_hora: nil
+            nombre: nil
           }
         },
         headers: @headers
