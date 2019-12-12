@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const Dashboard = () => {
+const Dashboard = props => {
   return ( 
     <div>
       <div>
-        <h1>Dashboard</h1>
+        <h1>Elcan Reservas</h1>
+        <p>Status: {props.loggedInStatus ? "Logged in" : "Not logged in"} </p>
       </div>
     </div>
    );

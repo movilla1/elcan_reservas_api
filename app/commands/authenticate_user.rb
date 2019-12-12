@@ -15,7 +15,7 @@ class AuthenticateUser
   attr_accessor :username, :password
 
   def user
-    user = Usuario.find_by(username: username)
+    user = Usuario.find_by(username: username) if username.present?
     return user if user.present? && user.authenticate(password)
 
     errors.add :user_authentication, 'invalid credentials'

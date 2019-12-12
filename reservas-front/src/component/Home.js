@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
-import Registration from './auth/Registration';
+import Login from './auth/Login';
 
 class Home extends Component {
-  state = {  }
-  render() { 
+  constructor(props) {
+    super(props);
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+  }
+
+  handleSuccessfulAuth(data) {
+    this.props.handleLogin(data);
+    this.props.history.push("/dashboard");
+  }
+
+  render() {
+    var loginIfNeeded="";
+    if (!this.props.loggedInStatus) {
+      loginIfNeeded = <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+    }
     return ( 
       <div>
-        <h1>Home</h1>
-        <Registration />
+        <h1>Elcan Reservas</h1>
+        {loginIfNeeded}
       </div>
      );
   }
