@@ -49,34 +49,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Login(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [authData, setAuthData] = useState({username: "", password: ""});
+  // eslint-disable-next-line
   const [loginStatus, setLoginStatus] = useState({AuthToken: "", isLoggedIn: false, mensaje: ""});
   const classes = useStyles();
 
   const handleChange = (event) => {
-    switch (event.target.name) {
-      case 'usuario':
-        setUsername(event.target.value);
-        break;
-      case 'password':
-        setPassword(event.target.value);
-        break;
-    }
+    var new_data = authData;
+    authData[event.target.name] = event.target.value;
+    setAuthData(new_data);
   };
+
   const handleSubmit = (event) => {
     axios.post( "http://localhost:3001/login", {
-      username: username,
-      password: password
+      username: authData.username,
+      password: authData.password
     }).then(response => {
       if (response.data.auth_token) {
         setLoginStatus({
           AuthToken: response.data.auth_token,
+          role: response.data.role,
           isLoggedIn: true
         });
         props.handleSuccessfulAuth(response.data.auth_token);
         const cookies = new Cookies();
-        cookies.set("details", response.data.auth_token, {path: "/"});
+        cookies.set("details", {token: response.data.auth_token, role: response.data.role}, {path: "/"});
       }
     }).catch( error => {
       console.log(error);
@@ -106,7 +103,7 @@ export default function Login(props) {
             fullWidth
             id="usuario"
             label="Usuario"
-            name="usuario"
+            name="username"
             autoComplete="usuario"
             autoFocus
             onChange={handleChange}

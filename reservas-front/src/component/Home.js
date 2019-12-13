@@ -16,6 +16,8 @@ class Home extends Component {
     var loginIfNeeded="";
     if (!this.props.loggedInStatus) {
       loginIfNeeded = <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
+    } else {
+      this.props.history.push("/dashboard");
     }
     return ( 
       <div>
